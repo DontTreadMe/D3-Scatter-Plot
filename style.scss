@@ -1,0 +1,26 @@
+$yesColor: #1B51B5;
+$noColor: #E82C0C;
+$bodyColor: #324D5C;
+body { 
+  background-color: $bodyColor;
+}
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  font-family: "FlexoW01-Regular";
+}
+.conteiner {
+  background-color: #fff;
+  padding: 20px;
+  width: 900px;
+  box-shadow: 2px 2px 20px;
+}
+.yes {
+  fill: $yesColor;
+}
+.no {
+  fill: $noColor;
+}
