@@ -1,30 +1,34 @@
 $yesColor: #1B51B5;
 $noColor: #E82C0C;
 $bodyColor: #324D5C;
-body { 
-  background-color: $bodyColor;
+@font-face {font-family: "Hiragino Sans GB";
+    src: url("//db.onlinewebfonts.com/t/3b2646a48566403a55f62ceddbecbe18.eot");
+    src: url("//db.onlinewebfonts.com/t/3b2646a48566403a55f62ceddbecbe18.eot?#iefix") format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/3b2646a48566403a55f62ceddbecbe18.woff2") format("woff2"),
+    url("//db.onlinewebfonts.com/t/3b2646a48566403a55f62ceddbecbe18.woff") format("woff"),
+    url("//db.onlinewebfonts.com/t/3b2646a48566403a55f62ceddbecbe18.ttf") format("truetype"),
+    url("//db.onlinewebfonts.com/t/3b2646a48566403a55f62ceddbecbe18.svg#Hiragino Sans GB") format("svg");
 }
-#root {
+body {
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;  
-  font-family: "FlexoW01-Regular";
+  font-family: "Hiragino Sans GB";
 }
-.conteiner {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  padding: 20px;
-  width: 720px;
-  box-shadow: 2px 2px 20px;
+#tooltip {
+  position: absolute;
+  padding: 5px;				
+  font-size: 14px;		
+  background: lighten($bodyColor, 54%);	
+  border: 0px;		
+  border-radius: 5px;			
+  pointer-events: none;
 }
 .yes, .no {
   stroke: #000;
-  opacity: 0.5
+  opacity: 0.8
 }
 .yes {
   fill: $yesColor;
