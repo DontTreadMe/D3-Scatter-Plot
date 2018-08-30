@@ -13,14 +13,25 @@ body {
   font-family: "FlexoW01-Regular";
 }
 .conteiner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #fff;
   padding: 20px;
-  width: 900px;
+  width: 720px;
   box-shadow: 2px 2px 20px;
+}
+.yes, .no {
+  stroke: #000;
+  opacity: 0.5
 }
 .yes {
   fill: $yesColor;
 }
 .no {
   fill: $noColor;
+}
+.info {
+  font-size: 0.7em;
 }
