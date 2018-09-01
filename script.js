@@ -1,5 +1,5 @@
 const margin = {
-        top: 80,
+        top: 100,
         right: 20,
         bottom: 30,
         left: 60
@@ -10,6 +10,7 @@ const margin = {
       .append("div")
       .attr("id", "tooltip")
       .style("opacity", 0),
+      color = d3.scaleOrdinal(d3.schemeDark2);
       svg = d3.select("body")
       .append("svg")
       .attr("width", w + margin.right + margin.left)
@@ -36,8 +37,10 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
   .attr("cx", (d) => xScale(d.Year))
   .attr("cy", (d) => yScale(d.Seconds * 1000))
   .attr("r", 6)
-  .attr("class", "dot")
-  .attr("class", (d) => d.Doping ? "yes" : "no")
+  .attr("class", (d) => d.Doping ? "yes dot" : "no dot")
+  .style("fill", function(d) {
+      return color(d.Doping != "");
+    })
   .on("mouseover", (d, i) => {
     div.transition()
     .duration(200)
@@ -75,45 +78,46 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
   .text('Time in Minutes')
   .attr("class", "info");
   
-  svg.append("rect")
-  .attr("x", w + margin.left - margin.right - 16)
-  .attr("y", (margin.top + margin.bottom) * 2)
-  .attr("width", 16)
-  .attr("height", 16)
-  .attr("class", "no");
-  
-  svg.append("rect")
-  .attr("x", w + margin.left - margin.right - 16)
-  .attr("y", (margin.top + margin.bottom) * 2 + 20)
-  .attr("width", 16)
-  .attr("height", 16)
-  .attr("class", "yes");
-  
-  svg.append("text")
-  .attr("x", w + margin.left - margin.right - 20)
-  .attr("y", (margin.top + margin.bottom) * 2 + 12)
-  .attr("text-anchor", "end")
-  .text('No doping allegations')
-  .attr("class", "info");
-  
-  svg.append("text")
-  .attr("x", w + margin.left - margin.right - 20)
-  .attr("y", (margin.top + margin.bottom) * 2 + 31)
-  .attr("text-anchor", "end")
-  .text('Riders with doping allegations')
-  .attr("class", "info");
   
   svg.append("text")
   .attr("text-anchor", "middle")
   .attr("x", (w + margin.left + margin.right) / 2)
-  .attr("y", 28)
+  .attr("y", 48)
   .text('Doping in Professional Bicycle Racing')
   .style("font-size", 28 + "px");
   
   svg.append("text")
   .attr("text-anchor", "middle")
   .attr("x", (w + margin.left + margin.right) / 2)
-  .attr("y", 56)
+  .attr("y", 76)
   .text('35 Fastest times up Alpe d\'Huez')
   .style("font-size", 20 + "px");
+  
+  const legend = svg.selectAll(".legend")
+  .data(color.domain())
+  .enter().append("g")
+  .attr("class", "legend")
+  .attr("id", "legend")
+  .attr("transform", function(d, i) {
+    return "translate(0," + (h/2 + i * 20) + ")";
+  });
+
+  legend.append("rect")
+  .attr("x", w)
+  .attr("width", 18)
+  .attr("height", 18)
+  .style("fill", color);
+
+  legend.append("text")
+  .attr("x", w - 6)
+  .attr("y", 9)
+  .attr("dy", ".35em")
+  .style("text-anchor", "end")
+  .text(function(d) {
+    if (d) return "Riders with doping allegations";
+    else {
+      return "No doping allegations";
+    };
+  })
+  .attr("class", "info"); 
 });
