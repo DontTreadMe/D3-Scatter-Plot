@@ -18,11 +18,11 @@ const margin = {
       .attr("height", h + margin.top + margin.bottom);
 
 d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json').then((json) => {
+  json.forEach((d) => d.Time = new Date(Date.UTC(1970, 0, 1, 0, 0, d.Seconds)));
   const xMin = d3.min(json, (d) => d.Year);
   const xMax = d3.max(json, (d) => d.Year);
-  const yMin = d3.min(json, (d) => d.Seconds * 1000);
-  const yMax = d3.max(json, (d) => d.Seconds * 1000);
-  
+  const yMin = d3.min(json, (d) => d.Time);
+  const yMax = d3.max(json, (d) => d.Time);  
   const xScale = d3.scaleLinear()
   .domain([xMin-1, xMax+1])
   .range([margin.left, w + margin.left - margin.right]);
@@ -36,9 +36,11 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
   .enter()
   .append("circle")
   .attr("cx", (d) => xScale(d.Year))
-  .attr("cy", (d) => yScale(d.Seconds * 1000))
+  .attr("cy", (d) => yScale(d.Time))
   .attr("r", 6)
-  .attr("class", (d) => d.Doping ? "yes dot" : "no dot")
+  .attr("class", "dot")
+  .attr("data-xvalue", (d) => d.Year)
+  .attr("data-yvalue", (d) => d.Time.toISOString())
   .style("fill", function(d) {
       return color(d.Doping != "");
     })
@@ -120,5 +122,5 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
       return "No doping allegations";
     };
   })
-  .attr("class", "info"); 
+  .attr("class", "info");
 });
