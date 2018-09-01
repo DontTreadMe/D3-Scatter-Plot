@@ -49,7 +49,7 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
     .duration(200)
     .style("opacity", .9)
     .style("background", colorTooltip(d.Doping != ""));
-    div.html(d.Name + ': ' + d.Nationality + '<br>' + 'Year: ' + d.Year + ', Time: ' + d.Time + (d.Doping ? '<br/><br/>' + d.Doping : ''));
+    div.html(d.Name + ': ' + d.Nationality + '<br>' + 'Year: ' + d.Year + ', Time: ' + d.Time.getUTCMinutes() + ":" + d.Time.getUTCSeconds() + (d.Doping ? '<br/><br/>' + d.Doping : ''));
     div.style("left", (d3.event.pageX) + "px")
     .style("top", (d3.event.pageY - 26) + "px");
   })
