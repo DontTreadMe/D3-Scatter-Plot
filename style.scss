@@ -1,6 +1,4 @@
-$yesColor: #1B51B5;
-$noColor: #E82C0C;
-$bodyColor: #324D5C;
+$bodyColor: #1b9e77;
 @font-face {font-family: "Hiragino Sans GB";
     src: url("//db.onlinewebfonts.com/t/3b2646a48566403a55f62ceddbecbe18.eot");
     src: url("//db.onlinewebfonts.com/t/3b2646a48566403a55f62ceddbecbe18.eot?#iefix") format("embedded-opentype"),
@@ -14,7 +12,6 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;  
   font-family: "Hiragino Sans GB";
 }
 #tooltip {
@@ -26,15 +23,9 @@ body {
   border-radius: 5px;			
   pointer-events: none;
 }
-.yes, .no {
+.dot {
   stroke: #000;
   opacity: 0.8
-}
-.yes {
-  fill: $yesColor;
-}
-.no {
-  fill: $noColor;
 }
 .info {
   font-size: 0.7em;
