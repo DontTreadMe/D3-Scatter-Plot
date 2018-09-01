@@ -1,4 +1,3 @@
-$bodyColor: #1b9e77;
 @font-face {font-family: "Hiragino Sans GB";
     src: url("//db.onlinewebfonts.com/t/3b2646a48566403a55f62ceddbecbe18.eot");
     src: url("//db.onlinewebfonts.com/t/3b2646a48566403a55f62ceddbecbe18.eot?#iefix") format("embedded-opentype"),
@@ -17,8 +16,7 @@ body {
 #tooltip {
   position: absolute;
   padding: 5px;				
-  font-size: 14px;		
-  background: lighten($bodyColor, 54%);	
+  font-size: 12px;
   border: 0px;		
   border-radius: 5px;			
   pointer-events: none;
