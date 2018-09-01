@@ -10,7 +10,8 @@ const margin = {
       .append("div")
       .attr("id", "tooltip")
       .style("opacity", 0),
-      color = d3.scaleOrdinal(d3.schemeDark2);
+      color = d3.scaleOrdinal(d3.schemeDark2),
+      colorTooltip = d3.scaleOrdinal(d3.schemePastel2);
       svg = d3.select("body")
       .append("svg")
       .attr("width", w + margin.right + margin.left)
@@ -44,7 +45,8 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
   .on("mouseover", (d, i) => {
     div.transition()
     .duration(200)
-    .style("opacity", .8);
+    .style("opacity", .9)
+    .style("background", colorTooltip(d.Doping != ""));
     div.html(d.Name + ': ' + d.Nationality + '<br>' + 'Year: ' + d.Year + ', Time: ' + d.Time + (d.Doping ? '<br/><br/>' + d.Doping : ''));
     div.style("left", (d3.event.pageX) + "px")
     .style("top", (d3.event.pageY - 26) + "px");
@@ -76,8 +78,7 @@ d3.json('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/mas
   .attr('x', -margin.top * 2)
   .attr('y', margin.left / 4)
   .text('Time in Minutes')
-  .attr("class", "info");
-  
+  .attr("class", "info");  
   
   svg.append("text")
   .attr("text-anchor", "middle")
